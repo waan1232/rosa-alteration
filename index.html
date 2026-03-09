@@ -542,15 +542,9 @@
       position: relative;
     }
 
-    /* First photo is tall (2 rows) */
-    .gallery-item:first-child {
-      grid-row: span 2;
-    }
-
-    /* Last photo is wide (full row) */
+    /* Last photo (shop exterior) spans 2 columns */
     .gallery-item:last-child {
-      grid-column: span 3;
-      grid-auto-rows: 220px;
+      grid-column: span 2;
     }
 
     .gallery-item img {
@@ -580,11 +574,6 @@
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: 200px;
-      }
-
-      .gallery-item:first-child {
-        grid-column: span 2;
-        grid-row: span 1;
       }
 
       .gallery-item:last-child {
@@ -1036,11 +1025,11 @@
         <div class="about-inner">
           <div class="about-image">
             <img
-              src="unnamed-7.jpg"
-              alt="Rosa fitting a wedding dress on a customer in the shop"
+              src="unnamed-8.jpg"
+              alt="Customer smiling in a fitted wedding gown at Rosa Alteration &amp; Tailor"
               loading="lazy"
-              width="572"
-              height="763"
+              width="763"
+              height="1016"
             >
             <div class="about-badge" aria-label="Serving Grand Rapids since 2010">
               <strong>15+</strong>
@@ -1134,19 +1123,7 @@
             <div class="gallery-overlay" aria-hidden="true"></div>
           </div>
 
-          <!-- Item 5 -->
-          <div class="gallery-item" role="listitem">
-            <img
-              src="unnamed-7.jpg"
-              alt="Rosa adjusting a wedding dress on a customer during a fitting"
-              loading="lazy"
-              width="572"
-              height="763"
-            >
-            <div class="gallery-overlay" aria-hidden="true"></div>
-          </div>
-
-          <!-- Item 6: wide banner -->
+          <!-- Item 5: wide banner -->
           <div class="gallery-item" role="listitem">
             <img
               src="unnamed-5.jpg"
