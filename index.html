@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rosa Alteration &amp; Tailor — Expert clothing alterations, bridal wear, and repairs in Grand Rapids, MI. Fast turnaround, fair pricing, trusted craftsmanship.">
+  <meta name="description" content="Rosa Alteration &amp; Tailor — clothing alterations, bridal wear, and repairs in Grand Rapids, MI. Fast turnaround, fair pricing.">
   <meta name="robots" content="index, follow">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://images.unsplash.com data:; connect-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none';">
   <title>Rosa Alteration &amp; Tailor | Grand Rapids, MI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,6 @@
       --cream:     #faf8f5;
       --white:     #ffffff;
       --gray-100:  #f5f5f5;
-      --gray-300:  #cccccc;
       --gray-500:  #888888;
       --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
       --shadow-md: 0 4px 16px rgba(0,0,0,.12);
@@ -236,36 +235,39 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, var(--navy) 0%, #2a3a5e 60%, #1a2744 100%);
       overflow: hidden;
       padding-top: 64px;
     }
 
-    .hero::before {
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(181,154,106,.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(181,154,106,.06) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    /* decorative stitch lines */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      right: 0;
-      width: 42%;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(181%2C154%2C106%2C0.12)'/%3E%3C/svg%3E") repeat;
-      pointer-events: none;
+      background: linear-gradient(
+        to right,
+        rgba(26,39,68,.93) 0%,
+        rgba(26,39,68,.85) 55%,
+        rgba(26,39,68,.45) 100%
+      );
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 680px;
+      max-width: 620px;
     }
 
     .hero-label {
@@ -292,10 +294,10 @@
     }
 
     .hero-sub {
-      color: rgba(255,255,255,.75);
+      color: rgba(255,255,255,.8);
       font-size: 1.1rem;
       font-weight: 300;
-      max-width: 520px;
+      max-width: 500px;
       margin-bottom: 2.5rem;
     }
 
@@ -438,6 +440,7 @@
       width: 100%;
       height: 480px;
       object-fit: cover;
+      object-position: center top;
       border-radius: var(--radius);
       box-shadow: var(--shadow-lg);
     }
@@ -528,8 +531,8 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 260px;
       gap: .75rem;
     }
 
@@ -539,9 +542,15 @@
       position: relative;
     }
 
+    /* First photo is tall (2 rows) */
     .gallery-item:first-child {
-      grid-column: span 2;
       grid-row: span 2;
+    }
+
+    /* Last photo is wide (full row) */
+    .gallery-item:last-child {
+      grid-column: span 3;
+      grid-auto-rows: 220px;
     }
 
     .gallery-item img {
@@ -549,11 +558,6 @@
       height: 100%;
       object-fit: cover;
       transition: transform .5s ease;
-      min-height: 200px;
-    }
-
-    .gallery-item:first-child img {
-      min-height: 400px;
     }
 
     .gallery-item:hover img {
@@ -575,11 +579,16 @@
     @media (max-width: 640px) {
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 200px;
       }
 
       .gallery-item:first-child {
         grid-column: span 2;
         grid-row: span 1;
+      }
+
+      .gallery-item:last-child {
+        grid-column: span 2;
       }
     }
 
@@ -737,6 +746,17 @@
       border-color: var(--gold-light);
     }
 
+    .map-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
     .cash-note {
       margin-top: 1rem;
       padding: .75rem 1rem;
@@ -760,7 +780,7 @@
       }
     }
 
-    /* ===== FOOTER BAR ===== */
+    /* ===== FOOTER ===== */
     .site-footer {
       background: #111827;
       text-align: center;
@@ -882,18 +902,30 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" aria-labelledby="hero-heading">
+      <!-- Real photo from the shop -->
+      <div class="hero-bg">
+        <img
+          src="unnamed-8.jpg"
+          alt="Customer in a fitted wedding gown at Rosa Alteration &amp; Tailor"
+          fetchpriority="high"
+          width="763"
+          height="1016"
+        >
+      </div>
+
       <div class="container">
         <div class="hero-content">
-          <div class="hero-label">Grand Rapids, Michigan</div>
+          <div class="hero-label">3911 Plainfield Ave NE &mdash; Grand Rapids, MI</div>
           <h1 id="hero-heading">
-            Precision Tailoring<br>&amp; <em>Expert Alterations</em>
+            Tailoring &amp; Alterations<br><em>Done Right</em>
           </h1>
           <p class="hero-sub">
-            Fast turnaround. Meticulous craftsmanship. Whether it's a wedding gown,
-            a suit, or your everyday wardrobe — we make every garment fit flawlessly.
+            We hem, taper, repair, and resize — from a quick zipper fix to taking
+            a wedding dress down multiple sizes. Walk in with a problem,
+            leave with clothes that fit.
           </p>
           <div class="hero-actions">
-            <a href="tel:+16163648889" class="btn btn-primary" aria-label="Call Rosa Alteration and Tailor for a quote">
+            <a href="tel:+16163648889" class="btn btn-primary" aria-label="Call Rosa Alteration and Tailor">
               Call for a Quote
             </a>
             <a href="https://maps.google.com/?q=3911+Plainfield+Ave+NE+Grand+Rapids+MI+49525"
@@ -904,18 +936,18 @@
               Get Directions
             </a>
           </div>
-          <div class="hero-trust" aria-label="Key facts">
+          <div class="hero-trust" aria-label="Quick facts">
             <div class="trust-item">
               <strong>Fast</strong>
-              Same-week service
+              Same-week turnaround
             </div>
             <div class="trust-item">
               <strong>Fair</strong>
-              Honest, upfront pricing
+              Estimate at drop-off
             </div>
             <div class="trust-item">
-              <strong>Trusted</strong>
-              Grand Rapids since 2010
+              <strong>Local</strong>
+              On Plainfield since 2010
             </div>
           </div>
         </div>
@@ -928,7 +960,7 @@
         <div class="section-header">
           <div class="section-label">What We Do</div>
           <h2 id="services-heading">Our Services</h2>
-          <p>From quick hems to complex bridal transformations, we handle it all with precision and care.</p>
+          <p>Hems, zippers, suits, wedding dresses — here's what we take in.</p>
           <div class="divider" aria-hidden="true"></div>
         </div>
 
@@ -936,55 +968,52 @@
           <!-- Card 1 -->
           <div class="service-card">
             <div class="service-icon" aria-hidden="true">
-              <!-- scissors icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
                 <line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/>
               </svg>
             </div>
             <h3>Everyday Alterations</h3>
-            <p>Perfectly fitted clothes for every occasion.</p>
+            <p>Pants too long, shirt too wide, sleeves hitting wrong — we fix it.</p>
             <ul class="service-items" aria-label="Everyday alteration services">
               <li>Hemming pants, skirts &amp; dresses</li>
               <li>Taking in or letting out seams</li>
               <li>Sleeve shortening &amp; reshaping</li>
               <li>Waist &amp; seat adjustments</li>
-              <li>Tapering for a slimmer silhouette</li>
+              <li>Tapering legs or body</li>
             </ul>
           </div>
 
           <!-- Card 2 -->
           <div class="service-card">
             <div class="service-icon" aria-hidden="true">
-              <!-- sparkle / formal icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
               </svg>
             </div>
             <h3>Bridal &amp; Formal Wear</h3>
-            <p>Your most important garments deserve the most careful hands.</p>
+            <p>Wedding dresses, prom gowns, suits. We've taken dresses down multiple sizes when other shops said it couldn't be done.</p>
             <ul class="service-items" aria-label="Bridal and formal wear services">
               <li>Wedding dress resizing &amp; fitting</li>
               <li>Prom &amp; bridesmaid gown alterations</li>
               <li>Suit &amp; tuxedo tailoring</li>
               <li>Bustle additions &amp; train adjustments</li>
-              <li>Corset backs &amp; bodice restructuring</li>
+              <li>Corset backs &amp; bodice work</li>
             </ul>
           </div>
 
           <!-- Card 3 -->
           <div class="service-card">
             <div class="service-icon" aria-hidden="true">
-              <!-- needle / repair icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 22V12m0-10v5m0 0l-2 2m2-2l2 2"/>
                 <path d="M2 12h5m10 0h5"/>
                 <circle cx="12" cy="12" r="3"/>
               </svg>
             </div>
-            <h3>Repairs &amp; Restorations</h3>
-            <p>Extend the life of your favourite pieces.</p>
-            <ul class="service-items" aria-label="Repair and restoration services">
+            <h3>Repairs &amp; Mending</h3>
+            <p>A broken zipper or a ripped seam doesn't mean the garment is done.</p>
+            <ul class="service-items" aria-label="Repair and mending services">
               <li>Zipper replacement &amp; repair</li>
               <li>Seam mending &amp; re-stitching</li>
               <li>Button &amp; snap replacement</li>
@@ -996,7 +1025,7 @@
 
         <div class="pricing-note" role="note">
           <strong>Pricing varies by garment and complexity.</strong>
-          Please call or visit for an exact quote — we are happy to provide an estimate at drop-off.
+          Call or stop in for an exact quote — you'll get an estimate when you drop off.
         </div>
       </div>
     </section>
@@ -1007,43 +1036,41 @@
         <div class="about-inner">
           <div class="about-image">
             <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=720&q=80&auto=format&fit=crop"
-              alt="Tailor carefully measuring a garment on a dress form"
+              src="unnamed-7.jpg"
+              alt="Rosa fitting a wedding dress on a customer in the shop"
               loading="lazy"
-              width="720"
-              height="480"
+              width="572"
+              height="763"
             >
-            <div class="about-badge" aria-label="Over 15 years serving Grand Rapids">
+            <div class="about-badge" aria-label="Serving Grand Rapids since 2010">
               <strong>15+</strong>
-              <span>Years of Service</span>
+              <span>Years on Plainfield</span>
             </div>
           </div>
 
           <div class="about-text">
-            <div class="section-label">Our Story</div>
-            <h2 id="about-heading">The Art of the Perfect Fit</h2>
+            <div class="section-label">The Shop</div>
+            <h2 id="about-heading">Rosa's on Plainfield</h2>
             <p>
-              At Rosa Alteration &amp; Tailor, every stitch is placed with intention.
-              For over fifteen years, we have served the Grand Rapids community from
-              our studio on Plainfield Avenue — transforming garments into clothes
-              that feel like they were made just for you.
+              Rosa has been doing alterations at 3911 Plainfield Ave since 2010.
+              In that time she's taken wedding dresses down four sizes, fixed racing
+              suits on a Saturday morning before track day, and hemmed more pants
+              than she can count.
             </p>
             <p>
-              Our approach begins with listening. We take time to understand how you
-              wear your clothes, the occasions they're meant for, and the fit you're
-              looking for. Then we get to work — methodically, precisely, and without
-              shortcuts.
+              Drop something off and you'll get an estimate on the spot.
+              No surprises when you pick it up. If you're on a tight deadline, say so —
+              rush service is available for when you really need it.
             </p>
             <p>
-              From emergency same-day zipper repairs to complex bridal resizing,
-              we treat every garment — and every customer — with the same meticulous
-              attention to detail.
+              Three other shops said no to resizing a wedding dress from a size 13
+              to a size 8. Rosa said yes. That's pretty much how it works here.
             </p>
-            <div class="about-features" aria-label="Our commitments">
-              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Rush service available for time-sensitive needs</div>
-              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Free estimate at drop-off</div>
-              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> We say yes when others say no</div>
-              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Open Saturdays for your busy schedule</div>
+            <div class="about-features" aria-label="What to know">
+              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Rush service when you're cutting it close</div>
+              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Estimate at drop-off, no surprise charges</div>
+              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Open Saturdays until 1 PM</div>
+              <div class="feature-row"><div class="feature-dot" aria-hidden="true"></div> Cash preferred</div>
             </div>
           </div>
         </div>
@@ -1054,50 +1081,83 @@
     <section id="gallery" aria-labelledby="gallery-heading">
       <div class="container">
         <div class="section-header">
-          <div class="section-label">Our Craft</div>
-          <h2 id="gallery-heading">The Details That Matter</h2>
+          <div class="section-label">From the Shop</div>
+          <h2 id="gallery-heading">Real Work, Real Customers</h2>
         </div>
-        <div class="gallery-grid" role="list" aria-label="Gallery of tailoring craft images">
+        <div class="gallery-grid" role="list" aria-label="Photos from Rosa Alteration and Tailor">
+
+          <!-- Item 1: tall featured -->
           <div class="gallery-item" role="listitem">
             <img
-              src="https://images.unsplash.com/photo-1544733422-b5e2d7a66b09?w=900&q=80&auto=format&fit=crop"
-              alt="Professional sewing machine in use at a tailor's studio"
+              src="unnamed-9.jpg"
+              alt="Customer in a lace wedding gown checking the fit at the shop mirror"
               loading="lazy"
-              width="900"
-              height="600"
+              width="572"
+              height="763"
             >
             <div class="gallery-overlay" aria-hidden="true"></div>
           </div>
+
+          <!-- Item 2 -->
           <div class="gallery-item" role="listitem">
             <img
-              src="https://images.unsplash.com/photo-1594938298603-c8148c4b3dcf?w=500&q=80&auto=format&fit=crop"
-              alt="Close-up of colorful thread spools used in tailoring"
+              src="unnamed-4.jpg"
+              alt="Back view of an altered lace and tulle wedding dress showing the finished fit"
               loading="lazy"
-              width="500"
-              height="320"
+              width="763"
+              height="1016"
             >
             <div class="gallery-overlay" aria-hidden="true"></div>
           </div>
+
+          <!-- Item 3 -->
           <div class="gallery-item" role="listitem">
             <img
-              src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500&q=80&auto=format&fit=crop"
-              alt="Tailor's measuring tape and fabric on a work table"
+              src="unnamed-6.jpg"
+              alt="Customer wearing an altered vintage-style dress at an outdoor event"
               loading="lazy"
-              width="500"
-              height="320"
+              width="572"
+              height="763"
             >
             <div class="gallery-overlay" aria-hidden="true"></div>
           </div>
+
+          <!-- Item 4 -->
           <div class="gallery-item" role="listitem">
             <img
-              src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&q=80&auto=format&fit=crop"
-              alt="Elegantly tailored suit hanging ready for pickup"
+              src="unnamed-8.jpg"
+              alt="Customer smiling in a fitted wedding gown inside the shop"
               loading="lazy"
-              width="500"
-              height="320"
+              width="763"
+              height="1016"
             >
             <div class="gallery-overlay" aria-hidden="true"></div>
           </div>
+
+          <!-- Item 5 -->
+          <div class="gallery-item" role="listitem">
+            <img
+              src="unnamed-7.jpg"
+              alt="Rosa adjusting a wedding dress on a customer during a fitting"
+              loading="lazy"
+              width="572"
+              height="763"
+            >
+            <div class="gallery-overlay" aria-hidden="true"></div>
+          </div>
+
+          <!-- Item 6: wide banner -->
+          <div class="gallery-item" role="listitem">
+            <img
+              src="unnamed-5.jpg"
+              alt="Exterior of Rosa Alterations and Tailors at 3911 Plainfield Ave NE, Grand Rapids"
+              loading="lazy"
+              width="763"
+              height="572"
+            >
+            <div class="gallery-overlay" aria-hidden="true"></div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1106,9 +1166,9 @@
     <section id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
         <div class="section-header">
-          <div class="section-label">Customer Stories</div>
-          <h2 id="reviews-heading">Trusted by Grand Rapids</h2>
-          <p>Real words from real customers — unedited, unsponsored.</p>
+          <div class="section-label">Customer Reviews</div>
+          <h2 id="reviews-heading">What People Are Saying</h2>
+          <p>From people who've been here.</p>
           <div class="divider" aria-hidden="true"></div>
         </div>
 
@@ -1145,7 +1205,8 @@
             <div class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="review-text">
               I needed a wedding dress altered down from a size 13 to a size 8 within 2.5 months.
-              Three other shops told me no — Rosa said it could be done. And it was, beautifully.
+              Not to mention I am very short so there was a lot of material to remove.
+              3 other shops told me no, but Rosa said it could be done.
             </p>
             <div class="review-author">
               <strong>Brittany Patilskis</strong>
@@ -1157,8 +1218,8 @@
           <article class="review-card">
             <div class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="review-text">
-              My daughter's favourite blanket ripped — she sleeps with it every night.
-              He was able to mend it and get it back to me within 24 hours.
+              My daughter's favorite blanket ripped that she sleeps with every night,
+              and he was able to mend it and get it back to me within 24 hours.
               Very grateful for his speedy and great service!
             </p>
             <div class="review-author">
@@ -1171,8 +1232,8 @@
           <article class="review-card">
             <div class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="review-text">
-              Excellent alterations! No one can do better. So popular, you might have to wait a week —
-              but it is way worth the expertise. Plan ahead.
+              Excellent alterations! No one can do better. So popular you might have to wait a week —
+              but way worth the expertise. Plan ahead.
             </p>
             <div class="review-author">
               <strong>Hugh Williams</strong>
@@ -1202,7 +1263,7 @@
     <section id="location" aria-labelledby="location-heading">
       <div class="container">
         <div class="section-header">
-          <div class="section-label">Visit Us</div>
+          <div class="section-label">Find Us</div>
           <h2 id="location-heading">Hours &amp; Location</h2>
         </div>
 
@@ -1213,8 +1274,7 @@
             <address>
               Rosa Alteration &amp; Tailor<br>
               3911 Plainfield Ave NE<br>
-              Grand Rapids, MI 49525<br>
-              United States
+              Grand Rapids, MI 49525
             </address>
             <a
               href="https://maps.google.com/?q=3911+Plainfield+Ave+NE+Grand+Rapids+MI+49525"
@@ -1227,15 +1287,15 @@
               Open in Google Maps
             </a>
             <div class="cash-note" role="note">
-              <strong>Payment:</strong> Cash preferred. Please bring exact payment or ask about alternatives when you call.
+              <strong>Cash preferred.</strong> Many small businesses skip the card processing fees — Rosa is no different. Bring exact payment or call ahead to ask.
             </div>
           </div>
 
           <div class="location-block">
-            <h3>Business Hours</h3>
+            <h3>Hours</h3>
             <table class="hours-table" aria-label="Business hours">
               <tbody>
-                <tr class="today"><td>Monday</td><td>9:00 AM – 5:00 PM</td></tr>
+                <tr><td>Monday</td><td>9:00 AM – 5:00 PM</td></tr>
                 <tr><td>Tuesday</td><td>9:00 AM – 5:00 PM</td></tr>
                 <tr><td>Wednesday</td><td>9:00 AM – 5:00 PM</td></tr>
                 <tr><td>Thursday</td><td>9:00 AM – 5:00 PM</td></tr>
@@ -1249,16 +1309,16 @@
           <div class="location-block">
             <h3>Drop-off Info</h3>
             <p>
-              Walk-ins welcome during business hours. For complex or rush jobs, we recommend
-              calling ahead so we can give you an accurate timeline and quote.
+              Walk-ins are welcome. For rush jobs or big alterations, calling ahead
+              helps us give you an accurate time estimate.
             </p>
             <p style="margin-top:.75rem;">
               <strong style="color:rgba(255,255,255,.9);">Phone:</strong><br>
               <a href="tel:+16163648889" style="color:var(--gold-light); font-size:1.15rem; font-weight:700;">(616) 364-8889</a>
             </p>
             <p style="margin-top:.75rem; color:rgba(255,255,255,.6); font-size:.88rem;">
-              Rush fees may apply for same-day or next-day service.
-              An estimate will always be provided before any work begins.
+              Rush fees may apply for same-day or next-day work.
+              You'll always get an estimate before anything starts.
             </p>
           </div>
 
@@ -1268,7 +1328,7 @@
 
   </main>
 
-  <!-- ===== SITE FOOTER ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <p>
       &copy; <span id="year"></span> Rosa Alteration &amp; Tailor &mdash; 3911 Plainfield Ave NE, Grand Rapids, MI 49525
